@@ -20,6 +20,8 @@ while getopts "u:" arg; do
   esac
 done
 
+cd ~/Downloads
+
 rm -f installer.sh
 rm -f aur.sh
 
