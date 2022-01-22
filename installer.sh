@@ -13,4 +13,4 @@ then
     exit
 fi
 
-yay -S rofi lightdm vscodium-bin alacritty ranger
+yay -Sy --noconfirm rofi lightdm vscodium-bin alacritty ranger
