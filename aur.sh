@@ -17,7 +17,7 @@ else
         echo "Starting package build"
         echo "=================================================="
         cd $1
-        if ! makepkg -si
+        if ! /bin/bash makepkg -si
         then
             echo "=================================================="
             echo "FATAL: Could not build the package, removing directory..."
