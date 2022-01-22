@@ -21,9 +21,12 @@ while getopts "u:" arg; do
 done
 
 rm -f installer.sh
+rm -f aur.sh
 
 curl -O https://raw.githubusercontent.com/$GITHUB_USER/dotfiles/$BRANCH/installer.sh
+curl -O https://raw.githubusercontent.com/$GITHUB_USER/dotfiles/$BRANCH/aur.sh
 
 chmod +x installer.sh
+chmod x+a aur.sh
 
 ./installer.sh
