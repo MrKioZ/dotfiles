@@ -3,5 +3,5 @@
 
 ## Installation
 ```bash
-curl -sL https://raw.githubusercontent.com/MrKioZ/dotfiles/download.sh | bash
+curl -sL https://raw.githubusercontent.com/MrKioZ/dotfiles/master/download.sh | bash
 ```
