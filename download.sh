@@ -29,6 +29,6 @@ curl -O https://raw.githubusercontent.com/$GITHUB_USER/dotfiles/$BRANCH/installe
 curl -O https://raw.githubusercontent.com/$GITHUB_USER/dotfiles/$BRANCH/aur.sh
 
 chmod +x installer.sh
-chmod x+a aur.sh
+chmod +x aur.sh
 
 ./installer.sh
