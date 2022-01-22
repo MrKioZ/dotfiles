@@ -22,7 +22,7 @@ done
 
 rm -f installer.sh
 
-curl -O https://raw.githubusercontent.com/$GITHUB_USER/alis/$BRANCH/installer.sh
+curl -O https://raw.githubusercontent.com/$GITHUB_USER/dotfiles/$BRANCH/installer.sh
 
 chmod +x alis.sh
 
