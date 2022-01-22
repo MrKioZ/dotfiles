@@ -13,5 +13,5 @@ then
     exit
 fi
 
-pacman -Sy --noconfirm --needed rofi lightdm alacritty ranger
+sudo pacman -Sy --noconfirm --needed rofi lightdm alacritty ranger
 # vscodium-bin
