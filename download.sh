@@ -24,6 +24,6 @@ rm -f installer.sh
 
 curl -O https://raw.githubusercontent.com/$GITHUB_USER/dotfiles/$BRANCH/installer.sh
 
-chmod +x alis.sh
+chmod +x installer.sh
 
 ./installer.sh
