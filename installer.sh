@@ -2,4 +2,4 @@
 
 sudo pacman -Syyu
 sudo pacman -Sy --noconfirm git
-./aur.sh yay
+/bin/bash ./aur.sh yay
