@@ -1,6 +1,8 @@
 # Dotfiles
 ---
 
+## Installation
+
 #### Installing yay
 ```bash
 sudo pacman -Syyu
@@ -16,7 +18,7 @@ makepkg -si
 yay -S rofi feh alacritty ranger polybar lightdm picom-jonaburg-git vscodium ttf-dejavu ttf-liberation noto-fonts
 ```
 
-## Installation
+#### Downloading Dotfiles content
 ```bash
 curl -sL https://raw.githubusercontent.com/MrKioZ/dotfiles/master/download.sh | bash
 ```
