@@ -92,25 +92,25 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+-- mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+-- local taglist_buttons = gears.table.join(
+--                     awful.button({ }, 1, function(t) t:view_only() end),
+--                     awful.button({ modkey }, 1, function(t)
+--                                               if client.focus then
+--                                                   client.focus:move_to_tag(t)
+--                                               end
+--                                           end),
+--                     awful.button({ }, 3, awful.tag.viewtoggle),
+--                     awful.button({ modkey }, 3, function(t)
+--                                               if client.focus then
+--                                                   client.focus:toggle_tag(t)
+--                                               end
+--                                           end),
+--                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+--                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+--                 )
 
 local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
@@ -182,25 +182,25 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
-
+    s.mywibox.height = 50
     -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
-    }
+    -- s.mywibox:setup {
+    --     layout = wibox.layout.align.horizontal,
+    --     { -- Left widgets
+    --         layout = wibox.layout.fixed.horizontal,
+    --         mylauncher,
+    --         s.mytaglist,
+    --         s.mypromptbox,
+    --     },
+    --     s.mytasklist, -- Middle widget
+    --     { -- Right widgets
+    --         layout = wibox.layout.fixed.horizontal,
+    --         mykeyboardlayout,
+    --         wibox.widget.systray(),
+    --         mytextclock,
+    --         s.mylayoutbox,
+    --     },
+    -- }
 end)
 -- }}}
 
@@ -301,7 +301,11 @@ globalkeys = gears.table.join(
                                     -- awful.screen.focused().mypromptbox:run()
                                 end,
               {description = "run prompt", group = "launcher"}),
-
+    awful.key({ modkey }, "c", function()
+                                    awful.spawn.with_shell("rofi -show calc")
+                                    -- awful.screen.focused().mypromptbox:run()
+                                end,
+                        {description = "run prompt", group = "launcher"}),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
@@ -360,7 +364,12 @@ clientkeys = gears.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client"}),
+    awful.key({modkey, "Shift"}, "s",
+        function(c)
+            awful.spawn.with_shell("maim --select | xclip -selection clipboard -t image/png")
+        end ,
+        {description = "Take region clipboard screenshot", group = "client"})
 )
 
 -- Bind all key numbers to tags.
@@ -497,7 +506,10 @@ client.connect_signal("manage", function (c)
     -- if not awesome.startup then awful.client.setslave(c) end
 
 
-    c.shape = gears.shape.rounded_rect
+    -- c.shape = gears.shape.rounded_rect
+    if c.name ~= "polybar" then
+        c.shape = gears.shape.rounded_rect
+    end
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
@@ -508,7 +520,7 @@ end)
 
 client.connect_signal("focus", function(c)
                                 c.border_color=beautiful.border_focus
-                                c.border_width=5
+                                c.border_width=3
                             end)
 client.connect_signal("unfocus", function(c)
                                     c.border_color=beautiful.border_normal
@@ -518,4 +530,5 @@ client.connect_signal("unfocus", function(c)
 -- beautiful.useless_gap = 5
 
 awful.spawn.with_shell("feh --bg-fill --randomize ~/Pictures/Wallpapers")
--- awful.spawn.with_shell("polybar example")
+awful.spawn.with_shell("~/.config/polybar/launch.sh")
+awful.spawn.with_shell('killall dunst;notify-send "hello world" "this is a test"')
